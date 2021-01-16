@@ -10,7 +10,9 @@ namespace EFCCoreNewFeatues.Repositories
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-
         }
+        public DbSet<Student> Student { get; set; }
+        public DbSet<Class> Class { get; set; }
     }
 }
+
