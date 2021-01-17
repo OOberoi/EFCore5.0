@@ -13,6 +13,12 @@ namespace EFCCoreNewFeatues.Repositories
         }
         public DbSet<Student> Student { get; set; }
         public DbSet<Class> Class { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
 
