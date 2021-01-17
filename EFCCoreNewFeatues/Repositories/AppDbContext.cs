@@ -16,6 +16,11 @@ namespace EFCCoreNewFeatues.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder
+                .Entity<Student>()
+                .HasMany(s => s.Classes)
+                .WithMany(s => s.Students)
+                .UsingEntity(t => t.ToTable("StudentClass"));
 
             base.OnModelCreating(modelBuilder);
         }
