@@ -30,9 +30,14 @@ namespace EFCCoreNewFeatues.Controllers
 
         // GET api/<StudentsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Student>> GetStudent(int id)
         {
-            return "value";
+            var stud = await _context.Student.FindAsync(id);
+            if (stud == null)
+            {
+                return NotFound();
+            }
+            return stud;
         }
 
         // POST api/<StudentsController>
