@@ -48,8 +48,37 @@ namespace EFCCoreNewFeatues.Controllers
 
         // PUT api/<StudentsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> PutStudent(int id, Student student)
         {
+            if (id != student.StudentID)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(student).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                //todo: Write this method
+                if (!StudentExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
+        private bool StudentExists(int id)
+        {
+            throw new NotImplementedException();
         }
 
         // DELETE api/<StudentsController>/5
@@ -59,3 +88,4 @@ namespace EFCCoreNewFeatues.Controllers
         }
     }
 }
+
