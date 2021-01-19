@@ -42,8 +42,12 @@ namespace EFCCoreNewFeatues.Controllers
 
         // POST api/<StudentsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<Student>> PostStudent(Student student)
         {
+            _context.Student.Add(student);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetStudent", new { id = student.StudentID }, student);
         }
 
         // PUT api/<StudentsController>/5
