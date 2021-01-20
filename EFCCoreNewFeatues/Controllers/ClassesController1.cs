@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EFCCoreNewFeatues.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,6 +14,11 @@ namespace EFCCoreNewFeatues.Controllers
     [ApiController]
     public class ClassesController1 : ControllerBase
     {
+        private readonly AppDbContext _context;
+        public ClassesController1(AppDbContext context)
+        {
+            _context = context;
+        }
         // GET: api/<ClassesController1>
         [HttpGet]
         public IEnumerable<string> Get()
