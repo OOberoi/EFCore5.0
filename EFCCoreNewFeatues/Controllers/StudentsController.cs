@@ -30,7 +30,7 @@ namespace EFCCoreNewFeatues.Controllers
 
         // GET api/<StudentsController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Student>> GetStudent(int id)
+        public async Task<ActionResult<Student>> GetStudentByID(int id)
         {
             var stud = await _context.Student.FindAsync(id);
             if (stud == null)
@@ -86,10 +86,19 @@ namespace EFCCoreNewFeatues.Controllers
         }
 
         // DELETE api/<StudentsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteStudent(int id)
+        //{
+        //    if (id == 0)
+        //    {
+        //        return BadRequest();
+
+        //        var studentToDelete = _context.Student.OrderBy(e => e.FirstName).Include(e => e.Classes).First();
+        //        _context.Remove(stud);
+        //        await _context.SaveChangesAsync();
+
+        //    }
+        //}
     }
 }
 
