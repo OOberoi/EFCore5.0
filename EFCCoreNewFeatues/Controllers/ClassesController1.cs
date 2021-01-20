@@ -21,9 +21,9 @@ namespace EFCCoreNewFeatues.Controllers
         }
         // GET: api/<ClassesController1>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<IEnumerable<Class>>> GetClasses()
         {
-            return new string[] { "value1", "value2" };
+            return await _context.Class.ToListAsync();
         }
 
         // GET api/<ClassesController1>/5
