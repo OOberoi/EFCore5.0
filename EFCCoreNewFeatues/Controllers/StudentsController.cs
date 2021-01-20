@@ -85,20 +85,23 @@ namespace EFCCoreNewFeatues.Controllers
             throw new NotImplementedException();
         }
 
-        // DELETE api/<StudentsController>/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteStudent(int id)
-        //{
-        //    if (id == 0)
-        //    {
-        //        return BadRequest();
+        //DELETE api/<StudentsController>/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteStudent(int id)
+        {
+            if (id == 0)
+            {
+                return BadRequest();
+            }
 
-        //        var studentToDelete = _context.Student.OrderBy(e => e.FirstName).Include(e => e.Classes).First();
-        //        _context.Remove(stud);
-        //        await _context.SaveChangesAsync();
-
-        //    }
-        //}
+            var foundStudent = _context.Student.FirstOrDefault(e => e.StudentID == id);
+            if (foundStudent != null)
+            {
+                _context.Student.Remove(foundStudent);
+                await _context.SaveChangesAsync();
+            }
+            return BadRequest();
+        }
     }
 }
 
