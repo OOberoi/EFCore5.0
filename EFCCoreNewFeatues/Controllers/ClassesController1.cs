@@ -28,9 +28,14 @@ namespace EFCCoreNewFeatues.Controllers
 
         // GET api/<ClassesController1>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Class>> GetClassByID(int id)
         {
-            return "value";
+            var cls = await _context.Class.FindAsync(id);
+            if (cls == null)
+            {
+                return NotFound();
+            }
+            return cls;
         }
 
         // POST api/<ClassesController1>
