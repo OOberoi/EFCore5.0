@@ -50,8 +50,36 @@ namespace EFCCoreNewFeatues.Controllers
 
         // PUT api/<ClassesController1>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult> PutClass(int id, [FromBody] Class myClass)
         {
+            if (id != myClass.ClassID)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(myClass).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                //todo: Write this method
+                if (!ClassExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
+        private bool ClassExists(int id)
+        {
+            throw new NotImplementedException();
         }
 
         // DELETE api/<ClassesController1>/5

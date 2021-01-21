@@ -52,7 +52,7 @@ namespace EFCCoreNewFeatues.Controllers
 
         // PUT api/<StudentsController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudent(int id, Student student)
+        public async Task<ActionResult> PutStudent(int id, Student student)
         {
             if (id != student.StudentID)
             {
