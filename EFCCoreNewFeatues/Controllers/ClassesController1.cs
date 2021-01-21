@@ -84,8 +84,20 @@ namespace EFCCoreNewFeatues.Controllers
 
         // DELETE api/<ClassesController1>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult> DeleteClass(int id)
         {
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+
+            var foundClass = _context.Class.FirstOrDefault(x => x.ClassID == id);
+            if (foundClass != null)
+            {
+                _context.Class.Remove(foundClass);
+                await _context.SaveChangesAsync();
+            }
+            return BadRequest();
         }
     }
 }
