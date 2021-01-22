@@ -102,6 +102,14 @@ namespace EFCCoreNewFeatues.Controllers
             }
             return BadRequest();
         }
+
+        [HttpDelete("sproc/{id}")]
+        public async Task<ActionResult<string>> DeleteStudentForSP(int id)
+        {
+            var rowsAffected = await _context.Database.ExecuteSqlInterpolatedAsync($"EXEC DeleteStudentForSP {id}");
+            return $"{rowsAffected} Student deleted";
+        }
+
     }
 }
 
