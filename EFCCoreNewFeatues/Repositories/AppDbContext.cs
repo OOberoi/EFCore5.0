@@ -10,10 +10,11 @@ namespace EFCCoreNewFeatues.Repositories
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
         public DbSet<Student> Student { get; set; }
         public DbSet<Class> Class { get; set; }
-
+         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
