@@ -82,7 +82,8 @@ namespace EFCCoreNewFeatues.Controllers
 
         private bool StudentExists(int id)
         {
-            throw new NotImplementedException();
+            var isTrue = _context.Student.FirstOrDefault(e => e.StudentID == id);
+            return isTrue != null;
         }
 
         //DELETE api/<StudentsController>/5
